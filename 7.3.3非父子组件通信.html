@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非父子组件通信</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div id='app'>
+	<p>{{message}}</p>
+	<com-a></com-a>
+</div>
+<script src='./lib/vue2.6.min.js'></script>
+
+<script type="text/javascript">
+	var bus = new Vue()
+
+	Vue.component('com-a', {
+		template: `<button @click=handleEvent>传递事件</button>`,
+		methods: {
+			handleEvent: function(){
+				bus.$emit('on-message', '来自component-a的数据')
+				console.log(this.$parent)
+			},
+		}
+	})
+	var app = new Vue({
+		el: '#app',
+		data: {
+			message: '',
+		},
+		methods: {},
+		mounted: function(){
+			let vm = this
+			bus.$on('on-message', function(msg){
+				vm.message = msg
+			})
+		}
+	})
+
+	function padEnd(val, pre) {
+		if(!isNaN(val) && isFinite(val)) {
+			let parts = val.toString().split('.')
+			let pad = '0000000000000000'
+			if(parts[1]) {
+				pad = parts[1] + pad
+			}
+			pad = pad.substr(0, pre)
+			return  parts[0] + '.' + pad
+		}
+		return ''
+	}
+
+	function PrefixInteger(num, length) {
+	 	return (Array(length).join('0') + num).slice(-length);
+	}
+	let kk = PrefixInteger(32, 5)
+	console.log(kk)
+</script>
+</body>
+</html>

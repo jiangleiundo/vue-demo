@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <!-- <link rel="stylesheet" href="lib/foundation/css/foundation.css"> -->
+    <style>
+		p{
+			margin-top: 100px;
+		}
+    </style>
+</head>
+
+<body>
+<div id='app'>
+	<my-com width="1000"></my-com>
+</div>
+<script src='./lib/vue2.6.min.js'></script>
+
+<script type="text/javascript">
+// mounted: function () {
+//     axios
+//       .get("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1315882/shoes.json")
+//       .then((res) => {
+//         this.$data.shopItems = res.data.shoes;
+//       });
+//   },
+
+// 问题，methods写成了mothods导致方法未声明出错！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+	Vue.component('my-com', {
+		template: '<div :style="style"></div>',
+		props: {
+			propA: Number,
+			propB: [String, Number],
+			propC: {
+				type: Boolean,
+				default: true
+			},
+			propD: {
+				type: Number,
+				required: true
+			},
+			propE: {
+				type: Array,
+				default: () => {
+					return []
+				}
+			},
+			propF: {
+				validator: function(val) {
+					return val > 0
+				}
+			}
+		},
+	})
+	var app = new Vue({
+		el: '#app',
+		data: {
+			msg: false,
+		},
+		methods: {
+			
+		}
+	})
+
+
+</script>
+<style>
+	.jack {
+		color: red;
+		background-color: gray;
+	}
+	.btn {
+		border: 1px solid green;
+	}
+	.btn-large {
+		font-size: 24px;
+		font-weight: bold;
+	}
+	.btn-disabled {
+		border-radius: 10px;
+	}
+</style>
+</body>
+</html>

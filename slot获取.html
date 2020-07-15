@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>slot</title>
+</head>
+
+<body>
+<div id='app'>
+	<child-com>
+		<template scope="props">
+			<p>来自父组件的内容</p>
+			<p>{{ props.msg }}</p>
+		</template>
+	</child-com>
+</div>
+<script src='./lib/vue2.6.min.js'></script>
+<script type="text/javascript">
+	Vue.component('child-com', {
+		template: '\
+		<div class="container">\
+			<slot :msg="msg"></slot>\
+		</div>',
+		data(){
+			return {
+				msg: 'cdhsi',
+				name: 'jerry'
+			}
+		}
+	});
+	var app = new Vue({
+		el: '#app',
+		data: {
+		},
+		methods: {
+
+		}
+	})
+
+
+</script>
+</body>
+</html>
