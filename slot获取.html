@@ -3,16 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>slot</title>
+    <title>slot获取</title>
 </head>
 
 <body>
 <div id='app'>
 	<child-com>
-		<template scope="props">
-			<p>来自父组件的内容</p>
-			<p>{{ props.msg }}</p>
-		</template>
+		<h2 slot="header">标题</h2>
+		<p>正文内容</p>
+		<p>more...</p>
+		<div slot="footer">底部</div>
 	</child-com>
 </div>
 <script src='./lib/vue2.6.min.js'></script>
@@ -20,13 +20,26 @@
 	Vue.component('child-com', {
 		template: '\
 		<div class="container">\
-			<slot :msg="msg"></slot>\
+			<div class="header">\
+				<slot name="header"></slot>\
+			</div>\
+			<div class="main">\
+				<slot></slot>\
+			</div>\
+			<div class="footer">\
+				<slot name="footer"></slot>\
+			</div>\
 		</div>',
 		data(){
-			return {
-				msg: 'cdhsi',
-				name: 'jerry'
-			}
+			return {}
+		},
+		mounted: function() {
+			let header = this.$slots.header
+			let main = this.$slots.default
+			let footer = this.$slots.footer
+			console.log(header)
+			console.log(main)
+			console.log(footer)
 		}
 	});
 	var app = new Vue({

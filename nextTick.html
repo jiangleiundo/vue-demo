@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>$nextTick</title>
+</head>
+
+<body>
+<div id='app'>
+	<div id="div" v-if="showDiv">this is a text</div>
+	<button @click="getTxt">get Txt</button>
+</div>
+<script src='./lib/vue2.6.min.js'></script>
+<script type="text/javascript">
+// 异步更新队列
+// Vue 在观察到数据变化时并不是直接更新 DOM，而是开启 一个队列，并缓冲在同一事件循环
+// 中发生的所有数据改变。在缓冲时会去除重复数据，从而避免不必要的计算和 DOM 操作。然后，
+// 在下一个事件循环 tick 中， Vue 刷新队列井执行实际（己去重的）工作
+	var app = new Vue({
+		el: '#app',
+		data: {
+			showDiv: false
+		},
+		methods: {
+			getTxt: function() {
+				this.showDiv = true;
+				this.$nextTick(() => {
+					let txt = document.getElementById('div').innerHTML;
+					console.log(txt)
+				})
+			}
+		}
+	})
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>动态组件</title>
+</head>
+
+<body>
+<div id='app'>
+	<component :is="curView"></component>
+	<button @click="handleClick('A')">to A</button>
+	<button @click="handleClick('B')">to B</button>
+	<button @click="handleClick('C')">to C</button>
+</div>
+<script src='./lib/vue2.6.min.js'></script>
+<script type="text/javascript">
+	var app = new Vue({
+		el: '#app',
+		components: {
+			comA: {
+				template: '<div>组件a</div>'
+			},
+			comB: {
+				template: '<div>组件b</div>'
+			},
+			comC: {
+				template: '<div>组件c</div>'
+			}
+		},
+		data: {
+			curView: 'comA'
+		},
+		methods: {
+			handleClick: function(con) {
+				this.curView = 'com' + con
+			}
+		}
+	})
+
+
+</script>
+</body>
+</html>

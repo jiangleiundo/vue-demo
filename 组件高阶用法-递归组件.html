@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>递归组件</title>
+</head>
+
+<body>
+<div id='app'>
+	<child-com :count="1"></child-com>
+</div>
+<script src='./lib/vue2.6.min.js'></script>
+<script type="text/javascript">
+	// 设置 name 后，在组件模板内就可以递归使用了，不过需要注意的是，必须给 个条件来限制
+	// 递归数量，否则会抛出错误 max stack size exceeded
+	// 组件递归使用可以用来开发一些具有未知层级关系的独
+	Vue.component('child-com', {
+		name: 'child-com',
+		props: {
+			count: {
+				type: Number,
+				default: 1
+			}
+		},
+		template: '\
+		<div class="container">\
+			<child-com\
+			:count="count + 1"\
+			v-if="count<5"></child-com>\
+		</div>'
+	});
+	var app = new Vue({
+		el: '#app',
+		data: {
+		},
+		methods: {
+
+		}
+	})
+
+
+</script>
+</body>
+</html>
