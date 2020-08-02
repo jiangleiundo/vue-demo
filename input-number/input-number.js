@@ -28,6 +28,10 @@ Vue.component('input-number', {
 		value: {
 			type: Number,
 			default: 0
+		},
+		step: {
+			type: Number,
+			default: 2
 		}
 	},
 	data(){
@@ -72,12 +76,13 @@ Vue.component('input-number', {
 
 		handleDown: function(){
 			if(this.curVal <= this.min) return;
-			this.curVal --
+			this.curVal -= this.step
 		},
 
 		handleUp: function(){
 			if(this.curVal >= this.max) return;
-			this.curVal ++
+			this.curVal += this.step
+			console.log(this.step)
 		}
 	},
 	mounted: function() {
