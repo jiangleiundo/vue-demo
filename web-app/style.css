@@ -1,0 +1,11 @@
+[v-cloak] {
+	display: none;
+}
+
+.main {
+	width: 254px;
+	height: 400px;
+	border: 1px solid #ddd;
+	margin: 50px auto;
+	padding: 10px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+    <style>
+		.j-head {
+			height: 60px;
+			line-height: 60px;
+			background: #333;
+			color: #ddd;
+		}
+    </style>
+</head>
+
+<body>
+<div id='app'>
+	<div class="j-head">点击显示下拉菜单</div>
+</div>
+<script src='./lib/vue2.6.min.js'></script>
+<script type="text/javascript">
+	Vue.component('my-com', {
+		template: "#my-com"
+	})
+	var app = new Vue({
+		el: '#app'
+	})
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id='app' v-cloak>
+	<div class="main" v-clickoutside="handleClose">
+		<button @click="show=!show">点击显示下拉菜单</button>
+		<div class="dropdown" v-show="show">
+			<p>这里是下拉菜单内容</p>
+		</div>
+	</div>
+</div>
+<script src='../lib/vue2.6.min.js'></script>
+<script src="clickoutside.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
